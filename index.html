@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="NXT-SPEED — a sleek browser-based internet speed test for download, upload, latency and jitter.">
+  <title>NXT-SPEED — Internet Speed Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="NXT-SPEED home"><span class="brand-mark">N<span>›</span></span><span>NXT<span class="brand-light">-SPEED</span><small>NETWORK INTELLIGENCE</small></span></a>
+    <div class="top-status"><span class="live-dot"></span><span id="connection-label">READY TO TEST</span><span class="version">BETA 1.0</span></div>
+  </header>
+  <main class="shell">
+    <section class="intro">
+      <div class="eyebrow"><span class="eyebrow-line"></span> YOUR CONNECTION, DECODED</div>
+      <h1>How fast is<br><span>your internet?</span></h1>
+      <p class="intro-copy">Measure your real-world connection in seconds.<br class="desktop-only"> No apps. No guesswork. Just your network.</p>
+    </section>
+    <section class="test-panel" aria-label="Internet speed test">
+      <div class="panel-head"><div><span class="section-index">01 / PERFORMANCE</span><h2>Speed diagnostics</h2></div><div class="secure-label"><span>⌁</span> BROWSER-BASED TEST</div></div>
+      <div class="main-test">
+        <div class="gauge-wrap">
+          <div class="gauge-ring" id="gauge-ring">
+            <div class="gauge-inner">
+              <div class="gauge-caption" id="gauge-caption">YOUR SPEED</div>
+              <div class="gauge-number" id="gauge-number">—</div>
+              <div class="gauge-unit" id="gauge-unit">Mbps</div>
+              <div class="gauge-phase" id="gauge-phase">READY WHEN YOU ARE</div>
+            </div>
+          </div>
+          <div class="gauge-foot"><span class="tiny-pulse"></span><span id="gauge-foot-text">Waiting for test</span></div>
+        </div>
+        <div class="metrics">
+          <div class="metric-card"><div class="metric-top"><span class="metric-icon down">↓</span><span class="metric-label">DOWNLOAD</span><span class="metric-state" id="download-state">—</span></div><div class="metric-value"><strong id="download-value">—</strong><span>Mbps</span></div><div class="metric-track"><span id="download-bar"></span></div><p>How quickly data reaches you</p></div>
+          <div class="metric-card"><div class="metric-top"><span class="metric-icon up">↑</span><span class="metric-label">UPLOAD</span><span class="metric-state" id="upload-state">—</span></div><div class="metric-value"><strong id="upload-value">—</strong><span>Mbps</span></div><div class="metric-track"><span id="upload-bar"></span></div><p>How quickly you send data</p></div>
+          <div class="metric-card small-metric"><div class="metric-top"><span class="metric-icon ping">◷</span><span class="metric-label">PING</span></div><div class="metric-value"><strong id="ping-value">—</strong><span>ms</span></div><p>Response time · lower is better</p></div>
+          <div class="metric-card small-metric"><div class="metric-top"><span class="metric-icon jitter">≈</span><span class="metric-label">JITTER</span></div><div class="metric-value"><strong id="jitter-value">—</strong><span>ms</span></div><p>Variation in response time</p></div>
+        </div>
+      </div>
+      <div class="test-actions"><button id="start-button" class="start-button"><span class="button-orbit">↗</span><span id="button-label">START SPEED TEST</span><span class="button-arrow">→</span></button><p id="test-message" role="status" aria-live="polite">For the most accurate result, pause downloads and streaming on other devices.</p></div>
+      <div class="progress-line"><span id="progress-fill"></span></div>
+    </section>
+    <section class="network-section">
+      <div class="section-heading"><div><span class="section-index">02 / NETWORK PROFILE</span><h2>Your connection</h2></div><span class="privacy-note">PUBLIC IP DETAILS</span></div>
+      <div class="network-grid">
+        <article class="info-card location-card"><div class="info-label"><span class="info-symbol">◎</span> LOCATION</div><div class="info-main"><span class="flag" id="country-flag">🌐</span><div><strong id="location-value">Detecting location…</strong><span id="country-value">Finding your region</span></div></div><div class="info-bottom"><span>APPROXIMATE GEOLOCATION</span><span class="info-status" id="location-status">LOADING</span></div></article>
+        <article class="info-card"><div class="info-label"><span class="info-symbol">⌘</span> INTERNET PROVIDER</div><div class="info-main provider-main"><strong id="isp-value">Looking up provider…</strong></div><div class="info-bottom"><span>NETWORK / ISP</span><span class="info-status" id="isp-status">LOADING</span></div></article>
+        <article class="info-card"><div class="info-label"><span class="info-symbol">⌁</span> PUBLIC IP ADDRESS</div><div class="info-main ip-main"><strong id="ip-value">—</strong><button id="copy-ip" class="copy-button" aria-label="Copy public IP" title="Copy public IP" disabled>▢</button></div><div class="info-bottom"><span>IPV4 / IPV6</span><span class="info-status" id="ip-status">LOADING</span></div></article>
+      </div>
+      <p class="privacy-disclaimer">Your IP and approximate location are retrieved from a third-party IP lookup service. Results may be unavailable if the service is blocked; your location is not GPS-precise.</p>
+    </section>
+    <section class="history-section"><div><span class="section-index">03 / SESSION</span><h2>Latest result</h2></div><div class="history-row"><div class="history-icon">↗</div><div class="history-copy"><strong id="history-title">No test completed yet</strong><span id="history-subtitle">Run a test to see your latest session here.</span></div><button id="reset-button" class="reset-button">RESET ↺</button></div></section>
+  </main>
+  <footer><a class="footer-brand" href="./">NXT<span>-SPEED</span></a><span>MEASURE WHAT MATTERS.</span><span>MADE FOR THE NEXT CONNECTION <b>↗</b></span></footer>
+</body>
+</html>
